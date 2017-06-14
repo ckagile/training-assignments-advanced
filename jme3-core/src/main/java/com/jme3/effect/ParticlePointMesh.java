@@ -37,6 +37,8 @@ import com.jme3.scene.VertexBuffer;
 import com.jme3.scene.VertexBuffer.Format;
 import com.jme3.scene.VertexBuffer.Usage;
 import com.jme3.util.BufferUtils;
+import com.jme3.util.FloatBufferUtils;
+
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
@@ -86,7 +88,7 @@ public class ParticlePointMesh extends ParticleMesh {
         }
 
         // set sizes
-        FloatBuffer sb = BufferUtils.createFloatBuffer(numParticles);
+        FloatBuffer sb = FloatBufferUtils.createFloatBuffer(numParticles);
         
         buf = getBuffer(VertexBuffer.Type.Size);
         if (buf != null) {
@@ -98,7 +100,7 @@ public class ParticlePointMesh extends ParticleMesh {
         }
 
         // set UV-scale
-        FloatBuffer tb = BufferUtils.createFloatBuffer(numParticles*4);
+        FloatBuffer tb = FloatBufferUtils.createFloatBuffer(numParticles*4);
         
         buf = getBuffer(VertexBuffer.Type.TexCoord);
         if (buf != null) {

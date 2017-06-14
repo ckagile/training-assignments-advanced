@@ -31,13 +31,26 @@
  */
 package com.jme3.scene;
 
-import com.jme3.export.*;
+import com.jme3.export.InputCapsule;
+import com.jme3.export.JmeExporter;
+import com.jme3.export.JmeImporter;
+import com.jme3.export.OutputCapsule;
+import com.jme3.export.Savable;
 import com.jme3.math.FastMath;
 import com.jme3.renderer.Renderer;
 import com.jme3.util.BufferUtils;
+import com.jme3.util.FloatBufferUtils;
 import com.jme3.util.NativeObject;
+
 import java.io.IOException;
-import java.nio.*;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.DoubleBuffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.nio.LongBuffer;
+import java.nio.ShortBuffer;
 
 /**
  * A <code>VertexBuffer</code> contains a particular type of geometry
@@ -782,7 +795,7 @@ public class VertexBuffer extends NativeObject implements Savable, Cloneable {
             case Float:
                 FloatBuffer fbuf = (FloatBuffer) data;
                 fbuf.limit(total);
-                FloatBuffer fnewBuf = BufferUtils.createFloatBuffer(total);
+                FloatBuffer fnewBuf = FloatBufferUtils.createFloatBuffer(total);
                 fnewBuf.put(fbuf);
                 data = fnewBuf;
                 break;
@@ -996,7 +1009,7 @@ public class VertexBuffer extends NativeObject implements Savable, Cloneable {
             case UnsignedInt:
                 return BufferUtils.createIntBuffer(total);
             case Float:
-                return BufferUtils.createFloatBuffer(total);
+                return FloatBufferUtils.createFloatBuffer(total);
             case Double:
                 return BufferUtils.createDoubleBuffer(total);
             default:

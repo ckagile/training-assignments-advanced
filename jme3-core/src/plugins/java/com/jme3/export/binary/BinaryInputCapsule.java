@@ -35,6 +35,7 @@ import com.jme3.export.InputCapsule;
 import com.jme3.export.Savable;
 import com.jme3.export.SavableClassUtil;
 import com.jme3.util.BufferUtils;
+import com.jme3.util.FloatBufferUtils;
 import com.jme3.util.IntMap;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -1275,7 +1276,7 @@ final class BinaryInputCapsule implements InputCapsule {
             index += length * 4;
             return value.asFloatBuffer();
         }else{
-            FloatBuffer value = BufferUtils.createFloatBuffer(length);
+            FloatBuffer value = FloatBufferUtils.createFloatBuffer(length);
             for (int x = 0; x < length; x++) {
                 value.put(readFloatForBuffer(content));
             }

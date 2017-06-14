@@ -31,8 +31,16 @@
  */
 package com.jme3.shader;
 
-import com.jme3.math.*;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.Matrix3f;
+import com.jme3.math.Matrix4f;
+import com.jme3.math.Quaternion;
+import com.jme3.math.Vector2f;
+import com.jme3.math.Vector3f;
+import com.jme3.math.Vector4f;
 import com.jme3.util.BufferUtils;
+import com.jme3.util.FloatBufferUtils;
+
 import java.nio.Buffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -41,7 +49,7 @@ public class Uniform extends ShaderVariable {
 
     private static final Integer ZERO_INT = 0;
     private static final Float ZERO_FLT = Float.valueOf(0);
-    private static final FloatBuffer ZERO_BUF = BufferUtils.createFloatBuffer(4*4);
+    private static final FloatBuffer ZERO_BUF = FloatBufferUtils.createFloatBuffer(4*4);
 
     /**
      * Currently set value of the uniform.
@@ -219,7 +227,7 @@ public class Uniform extends ShaderVariable {
                 }
                 Matrix3f m3 = (Matrix3f) value;
                 if (multiData == null) {
-                    multiData = BufferUtils.createFloatBuffer(9);
+                    multiData = FloatBufferUtils.createFloatBuffer(9);
                 }
                 m3.fillFloatBuffer(multiData, true);
                 multiData.clear();
@@ -235,7 +243,7 @@ public class Uniform extends ShaderVariable {
                 }
                 Matrix4f m4 = (Matrix4f) value;
                 if (multiData == null) {
-                    multiData = BufferUtils.createFloatBuffer(16);
+                    multiData = FloatBufferUtils.createFloatBuffer(16);
                 }
                 m4.fillFloatBuffer(multiData, true);
                 multiData.clear();
@@ -257,7 +265,7 @@ public class Uniform extends ShaderVariable {
             case FloatArray:
                 float[] fa = (float[]) value;
                 if (multiData == null) {
-                    multiData = BufferUtils.createFloatBuffer(fa);
+                    multiData = FloatBufferUtils.createFloatBuffer(fa);
                 } else {
                     multiData = BufferUtils.ensureLargeEnough(multiData, fa.length);
                 }
@@ -267,7 +275,7 @@ public class Uniform extends ShaderVariable {
             case Vector2Array:
                 Vector2f[] v2a = (Vector2f[]) value;
                 if (multiData == null) {
-                    multiData = BufferUtils.createFloatBuffer(v2a);
+                    multiData = FloatBufferUtils.createFloatBuffer(v2a);
                 } else {
                     multiData = BufferUtils.ensureLargeEnough(multiData, v2a.length * 2);
                 }
@@ -279,7 +287,7 @@ public class Uniform extends ShaderVariable {
             case Vector3Array:
                 Vector3f[] v3a = (Vector3f[]) value;
                 if (multiData == null) {
-                    multiData = BufferUtils.createFloatBuffer(v3a);
+                    multiData = FloatBufferUtils.createFloatBuffer(v3a);
                 } else {
                     multiData = BufferUtils.ensureLargeEnough(multiData, v3a.length * 3);
                 }
@@ -291,7 +299,7 @@ public class Uniform extends ShaderVariable {
             case Vector4Array:
                 Vector4f[] v4a = (Vector4f[]) value;
                 if (multiData == null) {
-                    multiData = BufferUtils.createFloatBuffer(v4a);
+                    multiData = FloatBufferUtils.createFloatBuffer(v4a);
                 } else {
                     multiData = BufferUtils.ensureLargeEnough(multiData, v4a.length * 4);
                 }
@@ -303,7 +311,7 @@ public class Uniform extends ShaderVariable {
             case Matrix3Array:
                 Matrix3f[] m3a = (Matrix3f[]) value;
                 if (multiData == null) {
-                    multiData = BufferUtils.createFloatBuffer(m3a.length * 9);
+                    multiData = FloatBufferUtils.createFloatBuffer(m3a.length * 9);
                 } else {
                     multiData = BufferUtils.ensureLargeEnough(multiData, m3a.length * 9);
                 }
@@ -315,7 +323,7 @@ public class Uniform extends ShaderVariable {
             case Matrix4Array:
                 Matrix4f[] m4a = (Matrix4f[]) value;
                 if (multiData == null) {
-                    multiData = BufferUtils.createFloatBuffer(m4a.length * 16);
+                    multiData = FloatBufferUtils.createFloatBuffer(m4a.length * 16);
                 } else {
                     multiData = BufferUtils.ensureLargeEnough(multiData, m4a.length * 16);
                 }

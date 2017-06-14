@@ -36,7 +36,11 @@ import com.jme3.bounding.BoundingVolume;
 import com.jme3.collision.Collidable;
 import com.jme3.collision.CollisionResults;
 import com.jme3.collision.bih.BIHTree;
-import com.jme3.export.*;
+import com.jme3.export.InputCapsule;
+import com.jme3.export.JmeExporter;
+import com.jme3.export.JmeImporter;
+import com.jme3.export.OutputCapsule;
+import com.jme3.export.Savable;
 import com.jme3.material.Material;
 import com.jme3.material.RenderState;
 import com.jme3.math.Matrix4f;
@@ -46,15 +50,26 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.VertexBuffer.Format;
 import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.scene.VertexBuffer.Usage;
-import com.jme3.scene.mesh.*;
+import com.jme3.scene.mesh.IndexBuffer;
+import com.jme3.scene.mesh.IndexIntBuffer;
+import com.jme3.scene.mesh.IndexShortBuffer;
+import com.jme3.scene.mesh.VirtualIndexBuffer;
+import com.jme3.scene.mesh.WrappedIndexBuffer;
 import com.jme3.util.BufferUtils;
+import com.jme3.util.FloatBufferUtils;
 import com.jme3.util.IntMap;
 import com.jme3.util.IntMap.Entry;
 import com.jme3.util.SafeArrayList;
 import com.jme3.util.clone.Cloner;
 import com.jme3.util.clone.JmeCloneable;
+
 import java.io.IOException;
-import java.nio.*;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.nio.DoubleBuffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.nio.ShortBuffer;
 import java.util.ArrayList;
 
 /**
@@ -443,7 +458,7 @@ public class Mesh implements Savable, Cloneable, JmeCloneable {
             if (weightsHW.getData() == null) {
                 VertexBuffer weights = getBuffer(Type.BoneWeight);
                 FloatBuffer originalWeight = (FloatBuffer) weights.getData();
-                FloatBuffer directWeight = BufferUtils.createFloatBuffer(originalWeight.capacity());
+                FloatBuffer directWeight = FloatBufferUtils.createFloatBuffer(originalWeight.capacity());
                 originalWeight.clear();
                 directWeight.put(originalWeight);
                 weightsHW.setupData(Usage.Static, weights.getNumComponents(), weights.getFormat(), directWeight);
@@ -1073,7 +1088,7 @@ public class Mesh implements Savable, Cloneable, JmeCloneable {
     }
 
     public void setBuffer(Type type, int components, float[] buf){
-        setBuffer(type, components, BufferUtils.createFloatBuffer(buf));
+        setBuffer(type, components, FloatBufferUtils.createFloatBuffer(buf));
     }
 
     public void setBuffer(Type type, int components, IntBuffer buf) {

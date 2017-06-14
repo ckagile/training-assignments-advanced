@@ -31,20 +31,6 @@
  */
 package com.jme3.renderer.opengl;
 
-import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
-import java.nio.ShortBuffer;
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.jme3.material.RenderState;
 import com.jme3.material.RenderState.BlendFunc;
 import com.jme3.material.RenderState.StencilOperation;
@@ -82,9 +68,24 @@ import com.jme3.texture.Texture.ShadowCompareMode;
 import com.jme3.texture.Texture.WrapAxis;
 import com.jme3.texture.image.LastTextureState;
 import com.jme3.util.BufferUtils;
+import com.jme3.util.FloatBufferUtils;
 import com.jme3.util.ListMap;
 import com.jme3.util.MipMapGenerator;
 import com.jme3.util.NativeObjectManager;
+
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.nio.ShortBuffer;
+import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class GLRenderer implements Renderer {
 
@@ -96,7 +97,7 @@ public final class GLRenderer implements Renderer {
     private final StringBuilder stringBuf = new StringBuilder(250);
     private final IntBuffer intBuf1 = BufferUtils.createIntBuffer(1);
     private final IntBuffer intBuf16 = BufferUtils.createIntBuffer(16);
-    private final FloatBuffer floatBuf16 = BufferUtils.createFloatBuffer(16);
+    private final FloatBuffer floatBuf16 = FloatBufferUtils.createFloatBuffer(16);
     private final RenderContext context = new RenderContext();
     private final NativeObjectManager objManager = new NativeObjectManager();
     private final EnumSet<Caps> caps = EnumSet.noneOf(Caps.class);
@@ -1659,7 +1660,7 @@ public final class GLRenderer implements Renderer {
         setFrameBuffer(fb);
 
         Vector2f[] samplePositions = new Vector2f[fb.getSamples()];
-        FloatBuffer samplePos = BufferUtils.createFloatBuffer(2);
+        FloatBuffer samplePos = FloatBufferUtils.createFloatBuffer(2);
         for (int i = 0; i < samplePositions.length; i++) {
             glext.glGetMultisample(GLExt.GL_SAMPLE_POSITION, i, samplePos);
             samplePos.clear();

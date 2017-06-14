@@ -34,8 +34,8 @@ package com.jme3.util;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.texture.Image;
-import com.jme3.texture.Image.Format;
 import com.jme3.texture.image.ImageRaster;
+
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 

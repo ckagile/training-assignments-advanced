@@ -52,6 +52,7 @@ import com.jme3.shader.Shader;
 import com.jme3.shader.Uniform;
 import com.jme3.shader.VarType;
 import com.jme3.util.TempVars;
+
 import java.util.EnumSet;
 
 public final class SinglePassLightingLogic extends DefaultTechniqueDefLogic {

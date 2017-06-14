@@ -31,15 +31,28 @@
  */
 package com.jme3.material;
 
-import com.jme3.material.logic.TechniqueDefLogic;
 import com.jme3.asset.AssetManager;
-import com.jme3.export.*;
+import com.jme3.export.InputCapsule;
+import com.jme3.export.JmeExporter;
+import com.jme3.export.JmeImporter;
+import com.jme3.export.OutputCapsule;
+import com.jme3.export.Savable;
+import com.jme3.material.logic.TechniqueDefLogic;
 import com.jme3.renderer.Caps;
-import com.jme3.shader.*;
+import com.jme3.shader.DefineList;
+import com.jme3.shader.Shader;
 import com.jme3.shader.Shader.ShaderType;
+import com.jme3.shader.ShaderGenerator;
+import com.jme3.shader.ShaderNode;
+import com.jme3.shader.UniformBinding;
+import com.jme3.shader.VarType;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Describes a technique definition.
